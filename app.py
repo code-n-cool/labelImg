@@ -2,6 +2,9 @@
 import openai
 import streamlit as st
 
+# Set page title and favicon
+st.set_page_config(page_title="SEERAH BOT", page_icon="📜")
+
 st.title("SEERAH BOT")
 
 client = openai.OpenAI(api_key=st.secrets["OPENAI_API_KEY"])

@@ -41,4 +41,5 @@ It is part of the "Muslims On Mission" project, dedicated to leveraging technolo
 
 ---
 
+
 For more information and detailed documentation, please refer to the project documentation or contact the project maintainers. Thank you for your interest in SEERAH BOT!
