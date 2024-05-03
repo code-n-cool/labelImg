@@ -1,9 +1,10 @@
-from openai import OpenAI
+# from openai import OpenAI
+import openai
 import streamlit as st
 
 st.title("SEERAH BOT")
 
-client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+client = openai.OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
