@@ -2,6 +2,9 @@
 import openai
 import streamlit as st
 
+# Set page title and favicon
+st.set_page_config(page_title="SEERAH BOT", page_icon="📜")
+
 st.title("SEERAH BOT")
 
 client = openai.OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
@@ -125,3 +128,42 @@ else:
                 st.session_state.checked=True
                 st.write("May Allah give barakah in your knowledge and help you in your journey to learn more about Seerah.")
    
+
+if prompt := st.chat_input("What is up?"):
+    st.session_state.messages.append({"role": "user", "content": prompt})
+    with st.chat_message("user"):
+        st.markdown(prompt)
+        
+    with st.chat_message("assistant"):
+        
+        thread = client.beta.threads.create(
+        messages=[
+                {"role": "user", "content": prompt}
+                # for m in st.session_state.messages
+            ],
+                # ,
+            # tool_resources={
+            #     "file_search": {
+            #     "vector_store_ids": ["vs_gPspfa4idD83ozY9M28BsHox"]
+            #     }
+            # }
+            # event_handler=EventHandler()
+        )
+        # report=[]
+        # for event in streams:
+        #     if event.data.object=="thread.message.delta":
+        #         for content in event.data.delta.content:
+        #             if content.type=="text":
+        #                 report.append(content.value)
+        #                 st.session_state.messages.append({"role": "assistant", "content": content.value})
+                        # resul=
+        with client.beta.threads.runs.stream(
+            thread_id=thread.id,
+            assistant_id=st.secrets["assistant_id"] ,
+            instructions="Please address the user as Seerah Bot. The user has a premium account.",
+            event_handler=EventHandler(),
+        ) as stream:
+                stream.until_done()
+        # response = st.write_stream(streams)
+    
+        # st.session_state.messages.append({"role": "assistant", "content": response})
