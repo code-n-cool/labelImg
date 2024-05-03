@@ -5,8 +5,6 @@ import streamlit as st
 # Set page title and favicon
 st.set_page_config(page_title="SEERAH BOT", page_icon="📜")
 
-user = st.text_input("Your Good name", "")
-st.write("Assalamoalikum ", user, " Welcome to Seerah Bot, How can I help you today?")
 
 st.title("SEERAH BOT")
 
@@ -70,23 +68,24 @@ class EventHandler(AssistantEventHandler):
         insertTodb(st.session_state.messages[-2]["content"],message_content.value)
         # print(response)
         # print("Citations\n".join(citations))
-# with st.form("my_form"):
-#     user = st.text_input("Your Good name", "")
-#     if "name"  in st.session_state:
-    
-#         st.write("Assalamoalikum ", st.session_state.name, " Welcome to Seerah Bot, How can I help you today?")
-#     else:
-#         st.write("Assalamoalikum ", user, " Welcome to Seerah Bot, How can I help you today?")
+with st.sidebar:
+    with st.form("my_form"):
+        user = st.text_input("Your Good name", "")
+        if "name"  in st.session_state:
+        
+            st.write("Assalamoalikum ", st.session_state.name, " Welcome to Seerah Bot, How can I help you today?")
+        else:
+            st.write("Assalamoalikum ", user, " Welcome to Seerah Bot, How can I help you today?")
 
-#     checkbox_val = st.checkbox("I here by share my query to Seerah Bot, and it can be used for training purposes.")
+        checkbox_val = st.checkbox("I here by share my query to Seerah Bot, and it can be used for training purposes.")
 
-#     # Every form must have a submit button.
-#     submitted = st.form_submit_button("Submit")
-#     if submitted:
-#         st.session_state.name=user
-#         if checkbox_val:
-#             st.session_state.checked=True
-#             st.write("May Allah give barakah in your knowledge and help you in your journey to learn more about Seerah.")
+        # Every form must have a submit button.
+        submitted = st.form_submit_button("Submit")
+        if submitted:
+            st.session_state.name=user
+            if checkbox_val:
+                st.session_state.checked=True
+                st.write("May Allah give barakah in your knowledge and help you in your journey to learn more about Seerah.")
 
        
 
@@ -130,7 +129,7 @@ class EventHandler(AssistantEventHandler):
         
 #             # st.session_state.messages.append({"role": "assistant", "content": response})
 
-    
+   
 if prompt := st.chat_input("What is up?"):
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
