@@ -80,7 +80,7 @@ if prompt := st.chat_input("What is up?"):
                         # resul=
         with client.beta.threads.runs.stream(
             thread_id=thread.id,
-            assistant_id=st.secrets["OPENAI_API_KEY"] ,
+            assistant_id=st.secrets["assistant_id"] ,
             instructions="Please address the user as Seerah Bot. The user has a premium account.",
             event_handler=EventHandler(),
         ) as stream:
