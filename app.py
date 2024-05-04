@@ -70,6 +70,7 @@ class EventHandler(AssistantEventHandler):
         # print("Citations\n".join(citations))
 with st.sidebar:
     with st.form("my_form"):
+        st.link_button("Check out Video about over Project", "https://www.youtube.com/watch?v=MgWLN9kC254")
         user = st.text_input("Your Good name", "")
         if "name"  in st.session_state:
         
